@@ -1,3 +1,7 @@
-import { greeting } from "./greeting.js";
+const hamburger = document.querySelector(".toggle-btn");
+const navigation = document.querySelector(".nav-menu");
 
-greeting();
+hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navigation.classList.toggle("active");
+});
