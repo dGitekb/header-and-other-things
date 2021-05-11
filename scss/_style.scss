@@ -4,14 +4,16 @@ $gray: #c4c4c4;
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: "Montserrat", sans-serif;
-    box-sizing: border-box;
     max-width: 1920px;
     background: $gray;
     margin: 0 auto;
@@ -43,7 +45,9 @@ header {
             align-items: center;
             @include mobile {
                 &.nav-menu {
-                    display: none;
+                    opacity: 0;
+                    display: flex;
+                    visibility: hidden;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
@@ -51,7 +55,8 @@ header {
                     width: 100%;
                     top: 64px;
                     left: 50%;
-                    transform: translateX(-50%);
+                    transform: translateX(-50%) translateY(-120%);
+                    transition: 0.5s ease-in-out;
                     padding: 10px 0;
                     button {
                         background: rgba($color: $black, $alpha: 0.5);
@@ -80,7 +85,9 @@ header {
                     }
                 }
                 &.nav-menu.active {
-                    display: flex;
+                    opacity: 100;
+                    visibility: visible;
+                    transform: translateX(-50%) translateY(0%);
                 }
             }
             button {
@@ -105,7 +112,7 @@ header {
                 }
             }
         }
-        .toggle-btn {
+        /*.toggle-btn {
             display: none;
             background: url("/imgs/menu-btn.svg");
             background-repeat: no-repeat;
@@ -125,6 +132,47 @@ header {
                     background-position: center;
                     background-size: 34px;
                 }
+            }
+        } */
+        .toggle-button {
+            display: none;
+            position: relative;
+            width: 147px;
+            height: 46px;
+            cursor: pointer;
+            @include mobile {
+                display: block;
+            }
+            div {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 50px;
+                height: 3px;
+                background: $white;
+                transform: translateX(-50%);
+                transition: 0.6s ease-in-out;
+            }
+            .first-line {
+                top: 30%;
+            }
+            .second-line {
+                top: 50%;
+            }
+            .thirde-line {
+                top: 70%;
+            }
+            .first-line.active {
+                top: 50%;
+                transform: translateX(-50%) rotate(45deg);
+            }
+            .second-line.active {
+                top: 50%;
+                transform: translateX(-50%) rotate(-45deg);
+            }
+            .thirde-line.active {
+                top: 70%;
+                opacity: 0;
             }
         }
     }
